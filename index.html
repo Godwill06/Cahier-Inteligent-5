@@ -8,8 +8,8 @@
 <link rel="apple-touch-icon" href="icon-192.png">
 <title>Cahier Malin</title>
 <script>function __bn(t){var b=document.createElement("div");b.style.cssText="background:#C8402F;color:#fff;padding:10px 12px;font:13px/1.4 sans-serif;word-break:break-word";b.textContent=t;document.body.insertBefore(b,document.body.firstChild)}
-window.onerror=function(m,u,l){if(window.__e)return;window.__e=1;__bn("Erreur : "+m+" (ligne "+l+") · v11")};
-setTimeout(function(){if(!window.__ok&&!window.__e)__bn("L’application ne s’est pas lancée · v11")},1500);</script>
+window.onerror=function(m,u,l){if(window.__e)return;window.__e=1;__bn("Erreur : "+m+" (ligne "+l+") · v12")};
+setTimeout(function(){if(!window.__ok&&!window.__e)__bn("L’application ne s’est pas lancée · v12")},1500);</script>
 <style>
 :root{--bg:#F2F4F1;--card:#FFFFFF;--ink:#0D1B14;--mut:#68756E;--line:#E7EBE6;--pri:#0F3D2E;--acc:#C8F03C;--ok:#1C8A57;--bad:#D14B3B;--chip:#EEF1ED;--sh:0 1px 2px rgba(13,27,20,.05),0 10px 28px rgba(13,27,20,.07);box-sizing:border-box;padding-top:env(safe-area-inset-top,0px)}
 @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0A130E;--card:#121F18;--ink:#EDF5EF;--mut:#8DA096;--line:#1F2F26;--ok:#4FD08C;--bad:#FF7F6E;--chip:#1A2A21;--sh:0 1px 2px rgba(0,0,0,.3),0 10px 28px rgba(0,0,0,.35)}}
@@ -71,7 +71,7 @@ nav button.on{background:var(--acc);color:#0F3D2E}
 <nav><div id="nav"></div></nav>
 <div id="toast" role="status"></div>
 <script>
-const ACT=false,DEMO=15,FIX=null;
+const ACT=true,DEMO=15,FIX=null;
 const CAN5=["Boutique","WhatsApp","Facebook","Instagram","TikTok"];
 const SECS={general:{n:"Ma Boutique",pack:0,stock:1,dette:1,art:"Article",can:["Boutique","WhatsApp","Facebook"]},mode:{n:"Atelier Mode",pack:1,stock:1,art:"Article",can:CAN5},beauty:{n:"Beauty Gestion",pack:1,stock:1,art:"Produit",can:CAN5},phone:{n:"Cabine Plus",pack:0,stock:1,cap:1,art:"Modèle",can:CAN5},resto:{n:"Resto Rapide",pack:0,stock:0,dette:1,art:"Plat",can:["Sur place","À emporter","Livraison","WhatsApp"]}};
 const CATS=["Loyer","Transport","Emballage","Communication","Salaire","Autre"];
@@ -114,7 +114,7 @@ const IC={home:SV('<path d="M3 11l9-8 9 8v9a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-
 const tabs=()=>[["home",IC.home,"Accueil"],["vente",IC.vente,"Vente"],["reap",SC().stock?IC.stock:IC.plat,SC().stock?"Réappro":"Plats"],["dep",IC.dep,"Dépense"],["bilan",IC.bilan,"Bilan"]];
 function go(t){tab=t;ED=null;render();window.scrollTo(0,0)}
 const DESC={mode:["👗","Vêtements, accessoires","achats en packs · ventes par canal"],beauty:["💄","Cosmétiques, pommades, maquillage","achats en packs · ventes par canal"],phone:["📱","Téléphones","un article par modèle et par capacité"],resto:["🍲","Cuisine, plats, restauration","coût par lot d’ingrédients · dettes clients"],general:["🛒","Autre commerce","achats à la pièce · dettes clients"]};
-function choose(){return `<div class="card" style="margin-top:6px"><h2>Quelle est votre activité ?</h2><p class="k" style="margin:0">Choisissez avant de commencer. Vous pourrez changer avec le menu en haut à droite : chaque activité garde ses propres données.</p>${Object.keys(DESC).map(k=>`<button class="ghost" style="width:100%;text-align:left;padding:14px;margin-top:10px;display:flex;gap:12px;align-items:center" onclick="setSec('${k}')"><span style="font-size:24px;width:48px;height:48px;border-radius:50%;background:var(--card);display:flex;align-items:center;justify-content:center;flex:none">${DESC[k][0]}</span><span><b>${SECS[k].n}</b><span class="k" style="display:block">${DESC[k][1]} · ${DESC[k][2]}</span></span></button>`).join("")}<p class="note" style="text-align:center">Version 11</p></div>`}
+function choose(){return `<div class="card" style="margin-top:6px"><h2>Quelle est votre activité ?</h2><p class="k" style="margin:0">Choisissez avant de commencer. Vous pourrez changer avec le menu en haut à droite : chaque activité garde ses propres données.</p>${Object.keys(DESC).map(k=>`<button class="ghost" style="width:100%;text-align:left;padding:14px;margin-top:10px;display:flex;gap:12px;align-items:center" onclick="setSec('${k}')"><span style="font-size:24px;width:48px;height:48px;border-radius:50%;background:var(--card);display:flex;align-items:center;justify-content:center;flex:none">${DESC[k][0]}</span><span><b>${SECS[k].n}</b><span class="k" style="display:block">${DESC[k][1]} · ${DESC[k][2]}</span></span></button>`).join("")}<p class="note" style="text-align:center">Version 12</p></div>`}
 function render(){if(!chosen){$("hn").textContent="Bienvenue";$("sec").style.display="none";$("nav").innerHTML="";$("v").innerHTML=choose();return}hdr();$("sec").innerHTML=Object.keys(SECS).map(k=>`<option value="${k}" ${k===SID?"selected":""}>${SECS[k].n}</option>`).join("");
  $("nav").innerHTML=tabs().map(t=>`<button class="${t[0]===tab?"on":""}" onclick="go('${t[0]}')"><b>${t[1]}</b>${t[2]}</button>`).join("");
  $("v").innerHTML=({home,vente,reap,dep,bilan})[tab]()}
